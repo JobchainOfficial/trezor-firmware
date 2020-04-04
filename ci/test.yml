@@ -335,8 +335,9 @@ hardware legacy device test:
 #    - nix-shell --run "./main.py ../../trezor-*.bin"
 #    - nix-shell --run "./basictest.py"
     - nix-shell --run "./record_video.sh ${CI_COMMIT_SHORT_SHA} stop"
+    - nix-shell --run "trezorctl list"
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_SHORT_SHA"
     paths:
-      - tpmb/scripts/video*.mp4
+      - ci/hardware_tests/video*.mp4
     expire_in: 1 week
