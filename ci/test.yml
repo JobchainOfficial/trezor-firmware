@@ -330,7 +330,7 @@ hardware legacy device test:
   script:
     - cd ci/hardware_tests
     - nix-shell --run "./record_video.sh ${CI_COMMIT_SHORT_SHA} start"
-    - nix-shell --run "pipenv run python ./main.py 1.8.3"  # TODO: this quite ugly
+    - nix-shell --run "cd ../.. && pipenv run python ci/hardware_tests/main.py 1.8.3"  # TODO: clean up this mess
 ##    - nix-shell --run "./main.py ../../trezor-*.bin"
 ##    - nix-shell --run "./basictest.py"
 #    - nix-shell --run "./record_video.sh ${CI_COMMIT_SHORT_SHA} stop"
