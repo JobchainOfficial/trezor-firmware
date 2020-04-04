@@ -321,18 +321,19 @@ image: registry.gitlab.com/satoshilabs/trezor/trezor-firmware/environment
 #    when: always
 
 # Hardware
-test hardware legacy firmware regular:
+hardware legacy device test:
   stage: test
   tags:
     - tpmb
   dependencies:
-    - legacy fw regular build
+    - legacy fw debug build
   script:
-    - git clone https://github.com/mmahut/tpmb
-    - cd tpmb/scripts
+#    - git clone https://github.com/mmahut/tpmb
+    - cd ci/hardware_tests
     - nix-shell --run "./record_video.sh ${CI_COMMIT_SHORT_SHA} start"
-    - nix-shell --run "./update_from_to.sh 1.8.3 ../../trezor-*.bin"
-    - nix-shell --run "./basictest.py"
+    - nix-shell --run "python ./main.py 1.8.3"
+#    - nix-shell --run "./main.py ../../trezor-*.bin"
+#    - nix-shell --run "./basictest.py"
     - nix-shell --run "./record_video.sh ${CI_COMMIT_SHORT_SHA} stop"
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_SHORT_SHA"
