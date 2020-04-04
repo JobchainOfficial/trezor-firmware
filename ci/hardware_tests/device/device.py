@@ -4,6 +4,10 @@ import time
 
 import serial
 
+# TODO:
+# move to Pipenv
+# run it in Pipenv
+
 
 class Device:
     def __init__(self, uhub_location, uhub_port, arduino_serial):

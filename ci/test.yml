@@ -328,14 +328,15 @@ hardware legacy device test:
   dependencies:
     - legacy fw debug build
   script:
-#    - git clone https://github.com/mmahut/tpmb
     - cd ci/hardware_tests
-    - nix-shell --run "./record_video.sh ${CI_COMMIT_SHORT_SHA} start"
-    - nix-shell --run "python ./main.py 1.8.3"
-#    - nix-shell --run "./main.py ../../trezor-*.bin"
-#    - nix-shell --run "./basictest.py"
-    - nix-shell --run "./record_video.sh ${CI_COMMIT_SHORT_SHA} stop"
-    - nix-shell --run "trezorctl list"
+    - nix-shell
+    - pipenv shell
+#    - nix-shell --run "./record_video.sh ${CI_COMMIT_SHORT_SHA} start"
+#    - nix-shell --run "pipenv run python ./main.py 1.8.3"
+##    - nix-shell --run "./main.py ../../trezor-*.bin"
+##    - nix-shell --run "./basictest.py"
+#    - nix-shell --run "./record_video.sh ${CI_COMMIT_SHORT_SHA} stop"
+    - trezorctl list
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_SHORT_SHA"
     paths:
